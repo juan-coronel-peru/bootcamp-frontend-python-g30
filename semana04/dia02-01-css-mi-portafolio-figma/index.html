@@ -3,17 +3,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi portafolio</title>
+  <title>Mi portafolio - Juan Coronel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  Hola, Soy Victor Doe 💪
+  <header class="header wrapper">
+    <span class="header__logo">{JC}</span>
 
-  <img src="images/icon-html5.svg" width="50" />
+    <nav class="header__menu">
+      <a href="#acerca-de-mi" class="header__menu--active">acerca de mi</a>
+      <a href="#habilidades">habilidades</a>
+      <a href="#portafolio">portafolio</a>
+    </nav>
 
-  <!-- TODO: Terminar el diseño con RWD -->
+    <div class="header__links">
+      
+      <a href="https://github.com/juan-coronel-peru" target="_blank">
+        <img src="images/icon-github.svg" alt="Enlace a mi repositorio personal" />
+      </a>
+      <a href="https://www.linkedin.com/in/juan-coronel-cusco/" target="_blank">
+        <img src="images/icon-linkedin.svg" alt="Enlace a mi LinkedIn" />
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--bg" id="acerca-de-mi">
+      <h2 class="hero__greeting">Hola, Soy <span>Juan Coronel</span> 💪</h2>
+      <h1 class="hero__title">Desarrollador web full-stack</h1>
+      <p class="hero__description">Desarrollador especializado en Javascript, React.js, Vue, Python y Node.js.</p>
+
+      <img class="hero__photo" src="images/juan_coronel_280.jpg" alt="Foto de Juan Coronel" width="280" hiegh = "280" />
+
+      <div class="stack">
+
+        <div class="stack__wrapper">
+          <h3 class="stack__title">HTML</h3>
+          <div class="stack__box">
+            <img src="images/icon-html5.svg" width="70" height="70" />
+          </div>
+        </div>
+
+        <div class="stack__wrapper">
+          <h3 class="stack__title">CSS</h3>
+          <div class="stack__box">
+            <img src="images/icon-css3.svg" width="70" height="70" />
+          </div>
+        </div>
+
+        <div class="stack__wrapper">
+          <h3 class="stack__title">Javascript</h3>
+          <div class="stack__box">
+            <img src="images/icon-javascript.svg" width="70" height="70" />
+          </div>
+        </div>
+
+        <div class="stack__wrapper">
+          <h3 class="stack__title">React</h3>
+          <div class="stack__box">
+            <img src="images/icon-reactjs.svg" width="70" height="70" />
+          </div>
+        </div>
+
+        <div class="stack__wrapper">
+          <h3 class="stack__title">Node.js</h3>
+          <div class="stack__box">
+            <img src="images/icon-nodejs.svg" width="70" height="70" />
+          </div>
+        </div>
+
+        <div class="stack__wrapper">
+          <h3 class="stack__title">Python</h3>
+          <div class="stack__box">
+            <img src="images/icon-python.svg" width="70" height="70" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades" class="section skills">
+      <div class="wrapper">
+        <div class="skills__grid">
+          <!-- Texto de la izquierda -->
+          <div class="skills__text">
+            <span class="skills__label">Mis habilidades</span>
+            <h2 class="skills__heading">
+              Mis habilidades de<br>
+              programador incluyen
+            </h2>
+            <p class="skills__paragraph">
+              Desarrollo de interfaces de usuario simples, intuitivas y
+              responsive que ayudan a los usuarios a hacer sus tareas
+              con menos esfuerzo y tiempo con esas tecnologías.
+            </p>
+            <p class="skills__paragraph">
+              Para más información, visita mi
+              <a href="https://github.com/juan-coronel-peru" class="skills__link" target="_blank" rel="noopener">Github</a>
+              o
+              <a href="https://www.linkedin.com/in/juan-coronel-cusco/" class="skills__link" target="_blank" rel="noopener">LinkedIn</a>.
+            </p>
+          </div>
+
+          <!-- Pirámide de íconos de la derecha -->
+<div class="skills__icons" aria-hidden="true">
+  <div class="skills__row">
+    <div class="skills__card">                          
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+  </div>
+
+  <div class="skills__row">
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+  </div>
+
+  <div class="skills__row">
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+  </div>
+
+  <div class="skills__row">
+    <div class="skills__card">
+      <img src="images/icon-html5.svg" alt="Icono HTML5">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-css3.svg" alt="Icono CSS3">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-javascript.svg" alt="Icono JavaScript">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-reactjs.svg" alt="Icono React">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-nodejs.svg" alt="Icono Node.js">
+    </div>
+    <div class="skills__card">
+      <img src="images/icon-python.svg" alt="Icono Python">
+    </div>
+  </div>
+</div>
+    </section>
+
+  <!-- PORTAFOLIO -->
+     <section id="portafolio" class="section portfolio">
+      <div class="wrapper">
+        <header class="portfolio__header">
+          <span class="portfolio__badge">MI PORTAFOLIO</span>
+          <h2 class="portfolio__title">Trabajos destacados</h2>
+
+          <nav class="portfolio__tabs" aria-label="Filtros de portafolio">
+            <button class="portfolio__tab portfolio__tab--active" type="button">Todos</button>
+            <button class="portfolio__tab" type="button">HTML/CSS</button>
+            <button class="portfolio__tab" type="button">React.js</button>
+            <button class="portfolio__tab" type="button">Challenges</button>
+          </nav>
+        </header>
+
+        <div class="portfolio__grid">
+          <!-- Tarjeta destacada: Memkards -->
+          <article class="project-card project-card--feature">
+            <div class="project-card__image">
+              <img src="images/porfolio_images.png" alt="Proyecto Memkards">
+            </div>
+
+            <div class="project-card__overlay">
+              <h3 class="project-card__title">Memkards</h3>
+              <p class="project-card__description">
+                Desarrollo de interfaces de usuario simples, intuitivas y responsive
+                que ayudan a los usuarios a hacer sus tareas con menos esfuerzo y
+                tiempo con esas tecnologías.
+              </p>
+
+              <div class="project-card__feature-icons">
+                <a href="#" class="project-card__feature-icon" aria-label="Ver proyecto">
+                  🔗
+                </a>
+                <a href="https://github.com/juan-coronel-peru"
+                   target="_blank" rel="noopener"
+                   class="project-card__feature-icon"
+                   aria-label="Ver en GitHub">
+                  <img src="images/icon-github.svg" alt="">
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Resto de trabajos (misma imagen) -->
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/porfolio_images.png" alt="Proyecto destacado 2">
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/porfolio_images.png" alt="Proyecto destacado 3">
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/porfolio_images.png" alt="Proyecto destacado 4">
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/porfolio_images.png" alt="Proyecto destacado 5">
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card__image">
+              <img src="images/porfolio_images.png" alt="Proyecto destacado 6">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact">
+      <div class="wrapper contact__content">
+        <div class="contact__info">
+          <h2 class="section__title">¿Trabajamos juntos?</h2>
+          <p class="section__subtitle">
+            Si tienes una idea, un proyecto en mente o una vacante disponible,
+            estaré encantado de conversar contigo.
+          </p>
+        </div>
+
+        <div class="contact__actions">
+          <a href="mailto:tucorreo@ejemplo.com" class="btn btn--primary">Enviar un correo</a>
+          <p class="contact__note">
+            También puedes encontrarme en
+            <a href="https://github.com/juan-coronel-peru" target="_blank" rel="noopener" class="contact__link">GitHub</a>
+            y
+            <a href="https://www.linkedin.com/in/juan-coronel-cusco/" target="_blank" rel="noopener" class="contact__link">LinkedIn</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrapper footer__content">
+      <p class="footer__copy">© 2025 Juan Coronel. Todos los derechos reservados.</p>
+      <p class="footer__made">
+        Hecho con <span>HTML</span>, <span>CSS</span> y <span>JavaScript</span>.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
