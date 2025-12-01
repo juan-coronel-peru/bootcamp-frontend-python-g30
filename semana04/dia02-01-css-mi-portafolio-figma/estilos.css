@@ -107,6 +107,70 @@ a {
   gap: 1rem;
 }
 
+/* Botones / iconos del header */
+.header__icon {
+  position: relative;
+  width: 32px;   /* como en Figma */
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Modo claro/oscuro: sol (Frame) + luna encima */
+.header__icon--toggle {
+  border-radius: 50%;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  overflow: visible;           /* MUY IMPORTANTE: para que la luna pueda salir por arriba */
+}
+
+.header__icon-bg {
+  width: 40px;
+  height: 40px;
+  display: block;              /* el sol dentro del círculo */
+}
+
+/* Luna por encima del círculo */
+.header__icon-fg {
+  position: absolute;
+  width: 20px;                 /* como en Figma */
+  height: 20px;
+  left: 50%;
+  bottom: calc(100% + 2px);    /* coloca la luna POR ENCIMA del círculo, con un pequeño espacio */
+  transform: translateX(-50%);
+  display: block;
+}
+
+/* GitHub / LinkedIn: circulitos oscuros con icono blanco */
+.header__icon--social {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.header__icon--social img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Hover para todos los iconos */
+.header__icon--toggle:hover,
+.header__icon--social:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+
+
 /* HERO SECTION */
 
 /* TODO: Terminar el diseño con css de la sección hero usando la maquetación en html */
