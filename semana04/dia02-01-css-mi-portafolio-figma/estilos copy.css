@@ -1,0 +1,749 @@
+/* =========================================================
+   VARIABLES GLOBALES
+   Aquí definimos fuentes y colores que se usan en todo el sitio,
+   para poder reutilizarlos y cambiar el diseño más fácilmente.
+   ========================================================= */
+
+:root {
+  /* Fuente principal para todo el sitio */
+  --font-primary: "Poppins", sans-serif;
+
+  /* Tamaño base del texto (1rem = 16px) */
+  --font-size: 16px;
+
+  /* Pesos de fuente que vamos a usar */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Colores principales de la paleta */
+  --primary-color-gold: #FFB742;        /* Dorado para detalles y botones */
+  --primary-color-dark-blue: #393646;   /* Azul muy oscuro, usado en secciones */
+  --primary-color-dark-violet: #4F4557; /* Violeta oscuro, color de fondo principal */
+  --primary-color-light-violet: #6D5D6E;/* Violeta más claro (no usado mucho aún) */
+  --primary-color-white: #FFFFFF;       /* Blanco para texto/fondos */
+}
+
+/* =========================================================
+   RESETEO GENERAL
+   Ajustes básicos para que todos los elementos se comporten
+   de forma más predecible.
+   ========================================================= */
+
+* {
+  box-sizing: border-box; /* El padding y el borde se incluyen dentro del width/height */
+  margin: 0;              /* Quitamos los márgenes por defecto de todos los elementos */
+}
+
+html {
+  font-size: var(--font-size); /* Base para usar rem en todo el sitio */
+}
+
+body {
+  font-family: var(--font-primary);                /* Fuente general */
+  background-color: var(--primary-color-dark-violet); /* Fondo morado oscuro */
+  color: var(--primary-color-white);              /* Texto blanco por defecto */
+}
+
+a {
+  color: inherit;        /* Los enlaces heredan el color del texto del contenedor */
+  text-decoration: none; /* Quitamos subrayado por defecto */
+}
+
+/* =========================================================
+   UTILIDAD: .wrapper
+   Centra el contenido y limita el ancho máximo del sitio.
+   ========================================================= */
+
+.wrapper {
+  width: min(100% - 3rem, 1220px); /* Ancho máximo 1220px, con margen lateral de 1.5rem */
+  margin: 0 auto;                  /* Centra horizontalmente el contenido */
+  /* border: 1px solid red;  Línea de ayuda visual para depuración (comentada) */
+}
+
+/* =========================================================
+   HEADER
+   Contiene logo, menú y los íconos (modo oscuro, GitHub, LinkedIn).
+   ========================================================= */
+
+.header {
+  display: flex;                  /* Coloca logo, menú e íconos en una fila */
+  justify-content: space-between; /* Deja logo a la izquierda e íconos a la derecha */
+  align-items: center;            /* Centra verticalmente los elementos */
+  padding: 2rem;                  /* Espacio interno alrededor del header */
+}
+
+/* Logo {JC} en el header */
+.header__logo {
+  color: var(--primary-color-gold);       /* Color dorado para destacar el logo */
+  font-size: 2rem;                        /* Tamaño grande */
+  font-weight: var(--font-weight-bold);   /* Peso de fuente fuerte */
+}
+
+/* Menú principal (acerca de mí, habilidades, portafolio) */
+.header__menu {
+  display: none; /* Oculto en pantallas pequeñas (solo se muestra en desktop) */
+}
+
+/* A partir de 992px mostramos el menú de navegación */
+@media (min-width: 992px) {
+  .header__menu {
+    display: flex;   /* Coloca los enlaces en fila */
+    gap: 1.5rem;     /* Espacio entre enlaces */
+  }
+}
+
+/* Estilo base de los enlaces del menú */
+.header__menu a {
+  font-size: 1.125rem;                     /* Ligeramente más grande que el texto normal */
+  font-weight: var(--font-weight-semibold);/* Un poco más grueso */
+  text-transform: capitalize;             /* Primera letra en mayúscula */
+  transition: color 0.3s ease, transform 0.2s ease; /* Suaviza los cambios de color/transform */
+}
+
+/* Efecto al pasar el mouse por el menú */
+.header__menu a:hover {
+  color: var(--primary-color-gold); /* Texto dorado al hacer hover */
+  transform: scale(1.1);            /* Aumenta ligeramente el tamaño (efecto zoom) */
+  transform: rotate(15deg);         /* Rota un poco el texto (efecto divertido) */
+}
+
+/* Enlace activo (sección actual) */
+.header__menu .header__menu--active {
+  color: var(--primary-color-gold);                 /* Texto dorado */
+  padding-bottom: 5px;                              /* Espacio bajo el texto */
+  border-bottom: 2px solid var(--primary-color-gold); /* Línea dorada bajo el texto */
+}
+
+/* Contenedor de los íconos del header (luna/sol, GitHub, LinkedIn) */
+.header__links {
+  display: flex;            /* Pone los íconos en fila */
+  align-items: center;      /* Centra verticalmente */
+  gap: 1rem;                /* Separación entre cada icono */
+}
+
+/* =========================================================
+   ICONOS DEL HEADER
+   Botón de modo claro/oscuro y botones de redes.
+   ========================================================= */
+
+/* Estilo base de cualquier icono (botón redondo) */
+.header__icon {
+  position: relative;      /* Necesario para posicionar la luna dentro/encima */
+  width: 32px;             /* Tamaño del botón */
+  height: 32px;
+  padding: 0;
+  border: none;            /* Sin borde del botón por defecto */
+  background: transparent; /* Fondo transparente (el ícono aporta el fondo) */
+  display: inline-flex;    /* Centra el contenido dentro */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;         /* Cambia el cursor a mano */
+}
+
+/* Botón del modo claro/oscuro (sol con luna encima) */
+.header__icon--toggle {
+  border-radius: 50%;                           /* Lo hace circular */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);  /* Sombra para efecto flotante */
+  overflow: visible;                            /* Permite que la luna salga por arriba del círculo */
+}     
+
+/* Imagen de fondo (el sol / círculo gris) */
+.header__icon-bg {
+  width: 40px;          /* Un poco más grande que el botón para que se vea el círculo */
+  height: 40px;
+  display: block;       /* Se comporta como un bloque dentro del botón */
+}
+
+/* Imagen de la luna, colocada por encima del círculo */
+.header__icon-fg {
+  position: absolute;              /* Se posiciona de forma independiente dentro del botón */
+  width: 20px;
+  height: 20px;
+  left: 50%;                       /* La centramos horizontalmente */
+  bottom: calc(100% + 2px);        /* 100% = borde superior del círculo, +2px de separación */
+  transform: translateX(-50%);     /* Ajuste para que quede realmente centrada */
+  display: block;
+}
+
+/* Botones de GitHub y LinkedIn (burbujas oscuras redondas) */
+.header__icon--social {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;                          /* Forma circular */
+  background-color: rgba(0, 0, 0, 0.35);       /* Fondo negro semitransparente */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);  /* Sombra para efecto flotante */
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease,
+              background-color 0.2s ease;      /* Animación suave en hover */
+}
+
+/* Tamaño de los íconos de GitHub y LinkedIn dentro de la burbuja */
+.header__icon--social img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Efecto hover para TODOS los iconos (modo oscuro + redes) */
+.header__icon--toggle:hover,
+.header__icon--social:hover {
+  background-color: rgba(0, 0, 0, 0.6);  /* Fondo más oscuro */
+  transform: translateY(-1px);           /* Se mueven un poco hacia arriba */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); /* Sombra más intensa */
+}
+
+/* =========================================================
+   HERO (Sección de presentación)
+   ========================================================= */
+
+.hero {
+  /* border: 1px solid red;  Línea de ayuda visual comentada */
+  display: flex;                /* Coloca los elementos del hero en columna */
+  flex-direction: column;
+  align-items: center;          /* Centra todo horizontalmente */
+  gap: 1.5rem;                  /* Separación vertical entre elementos */
+  padding: 4rem;                /* Espacio interno del hero */
+}
+
+/* Fondo con ilustración en el hero */
+.hero--bg {
+  background-image: url(images/bg.svg); /* Imagen de fondo */
+  background-repeat: no-repeat;         /* No se repite */
+  background-position: bottom;          /* Alineada abajo */
+  background-size: contain;             /* Escala la imagen sin recortarla */
+}
+
+/* "Hola, soy Juan..." */
+.hero__greeting {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+/* El nombre "Juan Coronel" dentro del saludo */
+.hero__greeting span {
+  color: var(--primary-color-gold); /* Dorado para resaltar */
+  text-decoration: underline;      /* Subrayado */
+}
+
+/* Título principal: "Desarrollador web full‑stack" */
+.hero__title {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Descripción corta debajo del título */
+.hero__description {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-regular);
+}
+
+/* Foto de perfil */
+.hero__photo {
+  margin-top: 1rem;       /* Espacio encima de la foto */
+  margin-bottom: 1rem;    /* Espacio debajo de la foto */
+  border-radius: 50%;     /* La hace circular */
+}
+
+/* Contenedor de la parrilla de tecnologías (HTML, CSS, JS, etc.) */
+.stack {
+  /* border: 1px solid yellow;  Línea de prueba comentada */
+  display: grid;                      /* Usamos grid para las tarjetas */
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas en móviles */
+  gap: 1.5rem;                        /* Espacio entre tarjetas */
+}
+
+/* En pantallas grandes, mostramos 6 columnas */
+@media (min-width: 992px) {
+  .stack {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Contenedor de cada elemento del stack (título + icono) */
+.stack__wrapper {
+  /* border: 1px solid red;  Para depuración */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Caja morada detrás del icono de cada tecnología */
+.stack__box {
+  background-color: var(--primary-color-dark-violet); /* Fondo morado */
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0.5rem;                              /* Esquinas redondeadas */
+  display: flex;
+  justify-content: center;
+  align-items: center;                                /* Centra el icono dentro de la caja */
+}
+
+/* Texto debajo de cada icono (HTML, CSS, etc.) */
+.stack__title {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.5rem;
+}
+
+/* =========================================================
+   REGLAS GENERALES PARA OTRAS SECCIONES
+   ========================================================= */
+
+main {
+  overflow: hidden; /* Evita barras de scroll horizontales por elementos que se salgan */
+}
+
+img {
+  max-width: 100%;  /* Las imágenes nunca serán más grandes que su contenedor */
+  display: block;   /* Quita espacios en blanco que deja display:inline */
+}
+
+/* Sección genérica (usa este padding en varias secciones) */
+.section {
+  padding: 4rem 0; /* Espacio arriba y abajo de cada sección */
+}
+
+/* Encabezado de sección (cuando hay título y subtítulo centrado) */
+.section__header {
+  margin-bottom: 2.5rem;
+}
+
+/* Centra el encabezado de sección */
+.section__header--center {
+  text-align: center;
+  max-width: 40rem;
+  margin-inline: auto; /* Centra el bloque horizontalmente */
+}
+
+/* Etiquetita pequeña encima de muchos títulos, en dorado */
+.section__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;         /* Separa las letras (estilo etiqueta) */
+  text-transform: uppercase;      /* Todo en mayúsculas */
+  color: var(--primary-color-gold);
+  margin-bottom: 0.5rem;
+}
+
+/* Título de sección reutilizable */
+.section__title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.5rem;
+}
+
+/* Subtítulo reutilizable */
+.section__subtitle {
+  font-size: 1rem;
+  color: var(--primary-color-white);
+  opacity: 0.8; /* Un poco más tenue que el blanco puro */
+}
+
+/* =========================================================
+   BOTONES GENERALES
+   ========================================================= */
+
+.btn {
+  display: inline-flex;       /* Tamaño se adapta al contenido, centrado vertical y horizontal */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;                /* Espacio si el botón tiene icono + texto */
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;       /* Botón totalmente redondeado (píldora) */
+  border: 2px solid transparent;
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;    /* Transiciones suaves en hover */
+}
+
+/* Botón principal dorado */
+.btn--primary {
+  background-color: var(--primary-color-gold);
+  color: #1e1a24;                       /* Texto oscuro sobre fondo dorado */
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Hover del botón principal */
+.btn--primary:hover {
+  transform: translateY(-2px);          /* Se eleva levemente */
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* Botón contorneado, transparente */
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--primary-color-gold);
+  color: var(--primary-color-white);
+}
+
+/* Hover del botón contorneado */
+.btn--outline:hover {
+  background-color: rgba(255, 183, 66, 0.1); /* Fondo dorado muy suave */
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   SECCIÓN "MIS HABILIDADES"
+   ========================================================= */
+
+/* Fondo morado para esta sección */
+.skills {
+  background-color: var(--primary-color-dark-violet);
+}
+
+/* Layout de la sección habilidades (texto + pirámide de iconos) */
+.skills__grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* En desktop: dos columnas (texto izquierda, iconos derecha) */
+@media (min-width: 992px) {
+  .skills__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  }
+}
+
+/* Columna de texto */
+.skills__text {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+/* Etiqueta "Mis habilidades" */
+.skills__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1.5rem;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: var(--primary-color-gold);
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1.5rem;
+}
+
+/* Título de la sección habilidades */
+.skills__heading {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+/* Párrafos de descripción */
+.skills__paragraph {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Espacio entre párrafos consecutivos */
+.skills__paragraph + .skills__paragraph {
+  margin-top: 1.2rem;
+}
+
+/* Enlaces a GitHub / LinkedIn dentro del texto */
+.skills__link {
+  color: var(--primary-color-gold);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Enlaces subrayados al pasar el mouse */
+.skills__link:hover {
+  text-decoration: underline;
+}
+
+/* Contenedor de la pirámide de iconos */
+.skills__icons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+/* Cada fila de la pirámide */
+.skills__row {
+  display: flex;
+  gap: 0.85rem;
+}
+
+/* Tarjeta cuadrada de cada tecnología en la pirámide */
+.skills__card {
+  width: 64px;
+  height: 64px;
+  border-radius: 0.75rem;
+  background-color: #3b3245;                  /* Cuadrado violeta oscuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.6); /* Sombra intensa */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Tamaño de los iconos dentro de la tarjeta */
+.skills__card img {
+  width: 36px;
+  height: 36px;
+}
+
+/* =========================================================
+   SECCIÓN PORTAFOLIO
+   ========================================================= */
+
+.portfolio {
+  background-color: var(--primary-color-dark-blue); /* Fondo azul oscuro */
+}
+
+/* Encabezado del portafolio: badge, título, tabs */
+.portfolio__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Badge "MI PORTAFOLIO" */
+.portfolio__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1.8rem;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--primary-color-gold);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em; /* Separa letras para efecto de badge */
+}
+
+/* Título "Trabajos destacados" */
+.portfolio__title {
+  font-size: 2.4rem;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Contenedor de los tabs (Todos, HTML/CSS, React, etc.) */
+.portfolio__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 1.25rem;
+}
+
+/* Estilo de cada tab */
+.portfolio__tab {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-semibold);
+  color: #ffffff;
+  cursor: pointer;
+  position: relative; /* Necesario para la línea inferior (::after) */
+}
+
+/* Línea que aparece debajo de cada tab */
+.portfolio__tab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.4rem;
+  width: 56px;
+  height: 3px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.8); /* Blanca para tabs no activos */
+}
+
+/* Estilo del tab activo ("Todos") */
+.portfolio__tab--active {
+  color: var(--primary-color-gold); /* Texto dorado */
+}
+
+/* Línea dorada para el tab activo */
+.portfolio__tab--active::after {
+  background-color: var(--primary-color-gold);
+}
+
+/* Grid que contiene todas las tarjetas de proyectos */
+.portfolio__grid {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.8rem;
+}
+
+/* En tablets: 2 columnas */
+@media (min-width: 768px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* En desktop: 3 columnas */
+@media (min-width: 992px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Tarjeta de proyecto (imágenes recortadas con proporción fija) */
+.project-card {
+  position: relative;
+  border-radius: 0.33rem;                      /* ~5.27px, similar al diseño */
+  overflow: hidden;                            /* Esconde bordes que sobresalgan */
+  background-color: var(--primary-color-dark-violet);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55); /* Sombra fuerte debajo */
+  aspect-ratio: 390 / 495.41;                  /* Mantiene proporción del diseño */
+}
+
+/* Contenedor de la imagen del proyecto */
+.project-card__image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* La imagen se escala ocupando todo el espacio */
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* Rellena el contenedor recortando lo que sobra */
+  display: block;
+  transition: transform 0.6s ease; /* Suaviza el zoom al hacer hover */
+}
+
+/* Efecto zoom al pasar por encima de la tarjeta */
+.project-card:hover .project-card__image img {
+  transform: scale(1.04);
+}
+
+/* Tarjeta destacada (Memkards): tiene borde dorado y overlay de texto */
+.project-card--feature {
+  border: 3px solid var(--primary-color-gold);
+}
+
+/* En la destacada, la imagen de fondo se hace semitransparente */
+.project-card--feature .project-card__image {
+  position: absolute;
+  inset: 0;       /* Ocupa toda la tarjeta */
+  opacity: 0.3;   /* Se ve tenue para que el texto resalte */
+}
+
+/* Capa encima de la imagen con el contenido (título, descripción, íconos) */
+.project-card__overlay {
+  position: relative;                    /* Se coloca sobre la imagen */
+  padding: 1.8rem 1.8rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Título grande de la tarjeta destacada */
+.project-card--feature .project-card__title {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+}
+
+/* Descripción de la tarjeta destacada */
+.project-card--feature .project-card__description {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+/* Contenedor de los iconos (link + GitHub) de la tarjeta destacada */
+.project-card__feature-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+/* Botones redondos dentro de la tarjeta destacada */
+.project-card__feature-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease,
+              background-color 0.2s ease;
+}
+
+/* Tamaño del icono dentro de esos botones */
+.project-card__feature-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hover de los botones de la tarjeta destacada */
+.project-card__feature-icon:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75);
+}
+
+/* =========================================================
+   FOOTER SIMPLE
+   ========================================================= */
+
+.footer {
+  background-image: url(images/bg.svg); /* Reutiliza el mismo fondo de montañas */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 4rem 0 3rem; /* Espacio arriba y abajo del footer */
+  font-size: 0.85rem;
+}
+
+/* Contenedor por si quieres aplicar un overlay futuro (ahora transparente) */
+.footer__overlay {
+  background: transparent;
+}
+
+/* Contenido principal del footer */
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  opacity: 0.95; /* Un poco transparente para integrarse al fondo */
+}
+
+/* Logo {JC} en el footer */
+.footer__logo {
+  color: var(--primary-color-gold);
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Texto "Made with ♥ by..." */
+.footer__text {
+  font-size: 0.85rem;
+}
+
+/* Color del corazón dentro del texto */
+.footer__text span {
+  color: #ff4d6a;
+}
